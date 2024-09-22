@@ -36,7 +36,8 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
           email: createUserReq.email, password: createUserReq.password);
       FirebaseFirestore.instance
           .collection('Users')
-          .add({'name': createUserReq.fullName, 'email': data.user?.email});
+          .doc(data.user?.uid)
+          .set({'name': createUserReq.fullName, 'email': data.user?.email});
 
       return const Right('Singup was successfull');
     } on FirebaseAuthException catch (e) {

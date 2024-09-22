@@ -50,16 +50,19 @@ class SinginPage extends StatelessWidget {
                       email: _email.text.toString(),
                       password: _password.text.toString(),
                     ));
-                    result.fold((l) {
-                      var snackBar = SnackBar(content: Text(l));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }, (r) {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomePage()),
-                          (route) => false);
-                    });
+                    result.fold(
+                      (l) {
+                        var snackBar = SnackBar(content: Text(l));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      (r) {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()),
+                            (route) => false);
+                      },
+                    );
                   },
                   title: 'Sign In')
             ],

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spotify_clone/common/helpers/is_dark_mode.dart';
 import 'package:spotify_clone/common/widgets/appbar/app_bar.dart';
 import 'package:spotify_clone/core/configs/assets/app_images.dart';
 import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
 import 'package:spotify_clone/core/configs/themes/app_colors.dart';
 import 'package:spotify_clone/presentation/homepage/widgets/news_songs.dart';
+import 'package:spotify_clone/presentation/homepage/widgets/play_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,6 +24,15 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+    updateUserDetails();
+  }
+
+  void updateUserDetails() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    if (!isLoggedIn) {
+      await prefs.setBool('isLoggedIn', true);
+    }
   }
 
   @override
@@ -52,7 +63,8 @@ class _HomePageState extends State<HomePage>
                   Container(),
                 ],
               ),
-            )
+            ),
+            const PlayList(),
           ],
         ),
       ),

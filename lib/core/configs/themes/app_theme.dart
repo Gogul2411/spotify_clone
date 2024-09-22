@@ -25,6 +25,7 @@ class AppTheme {
               borderSide: const BorderSide(color: Colors.black, width: 0.4))),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
               backgroundColor: AppColors.primary,
               elevation: 0,
               textStyle:
@@ -58,6 +59,7 @@ class AppTheme {
               borderSide: const BorderSide(color: Colors.white, width: 0.4))),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
               backgroundColor: AppColors.primary,
               elevation: 0,
               textStyle:
